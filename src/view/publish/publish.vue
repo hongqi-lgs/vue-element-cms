@@ -43,14 +43,6 @@
         name: "publish",
 
         props: {
-            uploadImgHook: {
-                type: Function,
-                default() {
-                    return () => {
-                        console.error("undefined uploadImg Hook")
-                    }
-                }
-            }
         },
         data() {
             let categories = this.GLOBAL.CATEGORIES;
@@ -73,6 +65,23 @@
             };
         },
         methods: {
+        uploadImgHook (file) {
+                console.log(file, 323)
+                  const data = new FormData()
+                  
+                  data.append('files', file)
+                  return axios({
+          method: 'POST',
+          url: '/cms/uploadImg',
+           headers: {'Content-Type': 'multipart/form-data'},
+          data: data
+        }).then((c) => {
+            console.log(c.data)
+            return '/uploadimg/' + c?.data?.file
+        })
+                   
+                
+            },
             onReady(editor) {
                 // Insert the toolbar before the editable area.
                 editor.ui.getEditableElement().parentElement.insertBefore(
@@ -82,21 +91,15 @@
                 editor.plugins.get('FileRepository').createUploadAdapter = loader => {
                     //let val = editor.getData();
                     return {
-                        upload: async () => {
-                            return await loader.file.then(f => {
-                                const F = new FileReader();
-                                F.readAsArrayBuffer(f);
-                                console.log(f)
-                                return new Promise(resolve => {
-                                    F.onload = function () {
-                                        resolve({bufAsArray: F.result, file: f})
-                                    };
-                                })
-                            }).then(v => {
-                                //执行上传上传
-                                return this.uploadImgHook(v)
-                            });
-
+                        upload: () => {
+                           return new Promise((resolve) => {
+                             loader.file.then(f => {
+                               this.uploadImgHook(f).then(x => {
+                               console.log(x)
+                                 resolve({default: x})
+                               })
+                             })
+                           })
                         }
                     }
                 };

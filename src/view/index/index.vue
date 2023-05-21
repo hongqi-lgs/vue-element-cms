@@ -12,7 +12,7 @@
                   <el-col :span="12">
                       <div>
                           <span class="header-title">
-                              <router-link :to="{ name: 'index-more', params: { label: '理论思想' }}" class="link-font-title">理论思想</router-link>
+                              <router-link :to="{ name: 'index-more', params: { label: '精华好文' }}" class="link-font-title">精华好文</router-link>
                           </span>
                           <span class="bottom-line"></span>
                       </div>
@@ -25,16 +25,15 @@
 
                   </el-col>
                 </el-row>
-                <el-row :gutter="30" style="padding-top: 20px;">
+                <el-row :gutter="30" style="padding: 20px 0;">
                   <el-col :span="12" style=" padding-left: 0px;">
                       <div class="row-bk-color row-padding-20">
                           <span class="header-title">
-                              <router-link :to="{ name: 'index-more', params: { label: '党章' }}" class="link-font-title">党章</router-link>
+                              <router-link :to="{ name: 'index-more', params: { label: '散文' }}" class="link-font-title">散文</router-link>
                           </span>
                           <span class="bottom-line"></span>
 
                           <div style="padding: 30px 10px 10px 5px;">
-                              <div class="link-font">中国共产党章程（2017年修改）</div>
                               <div v-for="(item, index) in content2" :key="index">
                                   <router-link  :to="{ name: 'detail', params: { id: item.id }}" class="link-font" :title="item.title">{{'● ' + item.title}}</router-link>
                               </div>
@@ -44,12 +43,11 @@
                   <el-col :span="12" style="padding-right: 0px;">
                       <div class="row-bk-color row-padding-20">
                           <span class="header-title">
-                              <router-link :to="{ name: 'index-more', params: { label: '准则' }}" class="link-font-title">准则</router-link>
+                              <router-link :to="{ name: 'index-more', params: { label: '小说' }}" class="link-font-title">小说</router-link>
                           </span>
                           <span class="bottom-line"></span>
 
                           <div style="padding: 30px 10px 10px 5px;">
-                              <div class="link-font">关于新形势下党内政治生活的若干准则</div>
                               <div v-for="(item, index) in content3"  :key="index">
                                   <router-link :to="{ name: 'detail', params: { id: item.id }}" class="link-font" :title="item.title">{{'● ' + item.title}}</router-link>
                               </div>
@@ -59,42 +57,16 @@
                   </el-col>
                 </el-row>
             </div>
-            <div class="row-bk-color footer-lunbo">
-                <div class="view-container container">
-                    <div class="flex-center">
-                        <div>
-                            <span class="header-title">党建期刊</span>
-                            <span class="bottom-line" style="margin: 5px auto;"></span>
-                        </div>
-
-                    </div>
-                    <div class="lunbo-container">
-                        <div class="swiper-container">
-                            <template>
-                                <swiper :options="swiperOption" class="swiper-wrapper">
-                                    <swiper-slide v-for="item in lunboImages" :key="item">
-                                        <img :src="item">
-                                    </swiper-slide>
-                                </swiper>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
 
 <script>
-
-    import {Swiper, SwiperSlide} from 'vue-awesome-swiper';
     import axios from 'axios';
 
     export default {
         name: "index",
         components: {
-          Swiper,
-          SwiperSlide
         },
         data() {
             return {

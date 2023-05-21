@@ -23,6 +23,15 @@ module.exports = {
                 // pathRewrite: {
                 //   '^/api': '/dgscgl'  //通过pathRewrite重写地址，将前缀/api转为/
                 // }
+            },
+            '/uploadimg': {
+                //target: 'http://192.168.0.52:7071',
+                target: 'http://127.0.0.1:3000',
+                ws: true,
+                changeOrigin: true,
+                // pathRewrite: {
+                //   '^/api': '/dgscgl'  //通过pathRewrite重写地址，将前缀/api转为/
+                // }
             }
         }
     },

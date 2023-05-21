@@ -44,7 +44,7 @@
 <style scoped>
     .el-header-no-padding, .el-footer {
         padding: 0px;
-        background-color: rgb(182, 20, 18);
+        background-color: black;
     }
 
     .logo-text {
